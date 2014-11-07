@@ -1,7 +1,24 @@
-
+ï»¿
 " Use Vim settings rather than vi.
 " (not quite unnecessary: http://stackoverflow.com/questions/5845557/)
 set nocompatible
+
+" ------- Environment --------------------------------------------------------
+
+set encoding=utf8 nobomb                " unicode, no byte-order-mark
+set ttyfast                             " better screen-redrawing
+
+set backup
+set backupdir=$HOME/.vim/temp/backups
+
+set swapfile
+set updatecount=42                      " default: 200
+set directory=$HOME/.vim/temp/swaps//   " // = include path in swap name
+if has("persistent_undo")
+    set undofile
+    set undodir=$HOME/.vim/temp/undo
+endif
+set viminfo+=n$HOME/.vim/.viminfo
 
 " ------- Appearance ---------------------------------------------------------
 
@@ -15,22 +32,28 @@ set cmdheight=2                         " more room for messages
 set shortmess=a                         " use abbreviated messages
 
 set list
-set listchars=tab:>\ ,trail:·,extends:»,precedes:«,nbsp:¬
+set listchars=tab:â†’\ ,trail:Â·,extends:Â»,precedes:Â«,nbsp:Â¬
 
 " ------- Behaviour ----------------------------------------------------------
+
+set confirm                             " ask instead of aborting
+set history=640                         " ought to be enough for anybody
+set noerrorbells visualbell t_vb=       " quiet, you.
+set nojoinspaces                        " combine lines without extra space
+set scrolloff=3                         " start scrolling before the edge
+set tildeop                             " allow ~ instead of g~
 
 set backspace=indent,eol,start          " enable reasonable backspacing
 set tabstop=8                           " default for actual tabs
 set shiftwidth=4 softtabstop=4 expandtab smarttab   " but use softtabs instead
 set shiftround                          " < and > to the nearest shiftwidth
 
-set wrap 
+set wrap
 if has("linebreak")
     set linebreak
     set breakat=\ ^I!@*-+;:,./?         " default
 endif
 
-set scrolloff=3                         " start scrolling before the edge
 
 " ------- Completion ---------------------------------------------------------
 
@@ -45,20 +68,6 @@ if has("wildmenu")
         set wildignore+=*~,*.sw?,*.tmp
     endif
 endif
-
-" ------- Environment --------------------------------------------------------
-
-set backup
-set backupdir=$HOME/.vim/temp/backups
-
-set swapfile
-set updatecount=42                      " default: 200
-set directory=$HOME/.vim/temp/swaps//   " // = include path in swap name
-if has("persistent_undo")
-    set undofile
-    set undodir=$HOME/.vim/temp/undo
-endif
-set viminfo+=n$HOME/.vim/.viminfo
 
 " ------- Searching ----------------------------------------------------------
 
