@@ -1,9 +1,4 @@
-﻿" .vimrc
-
-" Thanks to:
-"   Simon Crowley (http://inescapable.org/dotfiles/)
-"   Nicolas Gallagher (github.com/necolas/dotfiles)
-"   Tim Pope (github.com/tpope/vim-sensible, pathogen, etc.)
+﻿" ~/NolanWoods/dotfiles/.vimrc
 
 " Use Vim settings rather than vi.
 " (not quite unnecessary: http://stackoverflow.com/questions/5845557/)
