@@ -6,10 +6,16 @@ set nocompatible
 " ------- Appearance ---------------------------------------------------------
 
 set number
+if v:version >= 703
+    set relativenumber
+endif
 
 set showmode                            " show current mode
 set cmdheight=2                         " more room for messages
 set shortmess=a                         " use abbreviated messages
+
+set list
+set listchars=tab:>\ ,trail:·,extends:»,precedes:«,nbsp:¬
 
 " ------- Behaviour ----------------------------------------------------------
 
@@ -24,15 +30,42 @@ if has("linebreak")
     set breakat=\ ^I!@*-+;:,./?         " default
 endif
 
+set scrolloff=3                         " start scrolling before the edge
+
+" ------- Completion ---------------------------------------------------------
+
+if has("wildmenu")
+    set wildmenu
+    set wildmode=list:longest,full      " list & partial complete, then full
+    if has("wildignore")
+        set wildignore+=*.dll,*.o,*.pdb,*.pyc
+        set wildignore+=*.bmp,*.gif,*.ico,*.jpeg,*.jpg,*.png,*.tif
+        set wildignore+=*.mp3,*.m4a
+        set wildignore+=.DS_Store,.git,.hg,.svn
+        set wildignore+=*~,*.sw?,*.tmp
+    endif
+endif
+
 " ------- Environment --------------------------------------------------------
 
 set backup
 set backupdir=$HOME/.vim/temp/backups
-set directory=$HOME/.vim/temp/swaps
+
+set swapfile
+set updatecount=42                      " default: 200
+set directory=$HOME/.vim/temp/swaps//   " // = include path in swap name
 if has("persistent_undo")
+    set undofile
     set undodir=$HOME/.vim/temp/undo
 endif
 set viminfo+=n$HOME/.vim/.viminfo
+
+" ------- Searching ----------------------------------------------------------
+
+set ignorecase smartcase                " case insensitive unless you aren't
+set incsearch wrapscan                  " incremental, wrap-around
+set hlsearch                        " highlight last match (use :noh to clear)
+set gdefault                            " replace globally on lines
 
 " ------- Syntax -------------------------------------------------------------
 
@@ -43,7 +76,7 @@ else
 endif
 
 if has("syntax")
-    set nocursorline nocursorcolumn " too noisy
+    set nocursorline nocursorcolumn     " too noisy
     set colorcolumn=80
     syntax on
 endif
@@ -75,8 +108,9 @@ if has("statusline")
     set statusline+=%#StatusLineErr#
     set statusline+=%(%{&ff!='unix'?'['.&ff.']':''}%*\ %)
     set statusline+=%*
-    
+
     set statusline+=%=                          " start of right side
+    set statusline+=\ [%{getcwd()}]\            " working dir
     set statusline+=%20.(%c,%l/%L\ (%p%%)%)     " col,line/lines (percent%)
 
 endif " has("statusline")
@@ -89,6 +123,12 @@ hi StatusLineErr gui=none      guibg=#dc322f guifg=#002b36
 
 " make Y work from the cursor to the end of the line (which is more logical)
 nnoremap Y y$
+
+" faster scrolling (4 lines at a time)
+nnoremap <C-e> 3<C-e>
+vnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+vnoremap <C-y> 3<C-y>
 
 " ------- Autocommands -------------------------------------------------------
 
