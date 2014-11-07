@@ -1,7 +1,22 @@
-﻿
+﻿" .vimrc
+
+" Thanks to:
+"   Simon Crowley (http://inescapable.org/dotfiles/)
+"   Nicolas Gallagher (github.com/necolas/dotfiles)
+"   Tim Pope (github.com/tpope/vim-sensible, pathogen, etc.)
+
 " Use Vim settings rather than vi.
 " (not quite unnecessary: http://stackoverflow.com/questions/5845557/)
 set nocompatible
+
+" windows defaults ~/vimfiles instead of ~/.vim
+set runtimepath+=~/.vim     
+
+" load pathogen (since it's not in .vim/autoload)
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+
+" use pathogen to load everything else
+execute pathogen#infect()
 
 " ------- Environment --------------------------------------------------------
 
@@ -36,12 +51,17 @@ set listchars=tab:→\ ,trail:·,extends:»,precedes:«,nbsp:¬
 
 " ------- Behaviour ----------------------------------------------------------
 
+set autoread                            " reload file if modified externally
+set complete-=i                         " don't complete from included files
 set confirm                             " ask instead of aborting
+set fileformats=unix,dos
 set history=640                         " ought to be enough for anybody
 set noerrorbells visualbell t_vb=       " quiet, you.
 set nojoinspaces                        " combine lines without extra space
+set nrformats-=octal                    " stop trying to make octal happen
 set scrolloff=3                         " start scrolling before the edge
 set tildeop                             " allow ~ instead of g~
+set ttimeout ttimeoutlen=100  " prevent slow connections killing esc sequences
 
 set backspace=indent,eol,start          " enable reasonable backspacing
 set tabstop=8                           " default for actual tabs
@@ -128,7 +148,7 @@ hi! link StatusLineErr StatusLine
 hi StatusLineErr cterm=none    ctermbg=1     ctermfg=8
 hi StatusLineErr gui=none      guibg=#dc322f guifg=#002b36
 
-" ------- Rebindings --------------------------------------------------------
+" ------- Rebindings ---------------------------------------------------------
 
 " make Y work from the cursor to the end of the line (which is more logical)
 nnoremap Y y$
@@ -139,9 +159,18 @@ vnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 vnoremap <C-y> 3<C-y>
 
+" ------- Leader -------------------------------------------------------------
+
+let mapleader=";"
+
+noremap <leader>$ :call StripTrailingWhitespace()<CR>
+
 " ------- Autocommands -------------------------------------------------------
 
 if has("autocmd")
+
+    " treat .md files as Markdown, not Modula-2
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
     " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
     function! RestoreCursor()
@@ -156,5 +185,9 @@ if has("autocmd")
         autocmd!
         autocmd BufWinEnter * call RestoreCursor()
     augroup END
+
+    " strip trailing whitespace on file save
+    autocmd BufWritePre *.css,*.html,*.js,*.json,*.md,*.php,*.py,*.rb,
+                \*.scss,*.sh,*.txt :call StripTrailingWhitespace()
 
 endif "has autocmd
