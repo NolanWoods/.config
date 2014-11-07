@@ -90,3 +90,22 @@ hi StatusLineErr gui=none      guibg=#dc322f guifg=#002b36
 " make Y work from the cursor to the end of the line (which is more logical)
 nnoremap Y y$
 
+" ------- Autocommands -------------------------------------------------------
+
+if has("autocmd")
+
+    " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+    function! RestoreCursor()
+        if line("'\"") <= line("$")
+            normal! g`"
+            normal! z.
+            return 1
+        endif
+    endfunction
+
+    augroup restoreCursor
+        autocmd!
+        autocmd BufWinEnter * call RestoreCursor()
+    augroup END
+
+endif "has autocmd
