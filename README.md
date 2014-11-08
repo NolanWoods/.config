@@ -11,7 +11,10 @@ maintainers and stackoverflow contributors.
 
 - Various [sensible](https://github.com/tpope/vim-sensible) defaults, and
   [pathogen](https://github.com/tpope/vim-pathogen)
-- `;$` remove trailing whitespace (also, on save for various filetypes)
+- `<F2>` to toggle paste
+- `<Ctrl+S>` to save the current file (even in Insert mode)
+- `,vr` reload .vimrc
+- `,$` remove trailing whitespace (also, on save for various filetypes)
 
 ### [vim-commentary](https://github.com/tpope/vim-commentary)
 

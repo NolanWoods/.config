@@ -1,4 +1,4 @@
-﻿" ~/NolanWoods/dotfiles/.vimrc
+" ~/NolanWoods/dotfiles/.vimrc
 
 " Use Vim settings rather than vi.
 " (not quite unnecessary: http://stackoverflow.com/questions/5845557/)
@@ -40,8 +40,8 @@ endif
 set showmode                            " show current mode
 set cmdheight=2                         " more room for messages
 set shortmess=a                         " use abbreviated messages
+set winminheight=0                      " allow 0-line windows; so much better
 
-set list
 set listchars=tab:→\ ,trail:·,extends:»,precedes:«,nbsp:¬
 
 " ------- Behaviour ----------------------------------------------------------
@@ -49,6 +49,7 @@ set listchars=tab:→\ ,trail:·,extends:»,precedes:«,nbsp:¬
 set autoread                            " reload file if modified externally
 set complete-=i                         " don't complete from included files
 set confirm                             " ask instead of aborting
+set encoding=utf8 nobomb                " unicode, no byte-order-mark
 set fileformats=unix,dos
 set history=640                         " ought to be enough for anybody
 set noerrorbells visualbell t_vb=       " quiet, you.
@@ -57,6 +58,7 @@ set nrformats-=octal                    " stop trying to make octal happen
 set scrolloff=3                         " start scrolling before the edge
 set tildeop                             " allow ~ instead of g~
 set ttimeout ttimeoutlen=100  " prevent slow connections killing esc sequences
+set ttyfast                             " better screen-redrawing
 
 set backspace=indent,eol,start          " enable reasonable backspacing
 set tabstop=8                           " default for actual tabs
@@ -65,7 +67,7 @@ set shiftround                          " < and > to the nearest shiftwidth
 
 set wrap
 if has("linebreak")
-    set linebreak
+    set linebreak                       " visually break at word boundaries
     set breakat=\ ^I!@*-+;:,./?         " default
 endif
 
@@ -88,7 +90,6 @@ endif
 
 set ignorecase smartcase                " case insensitive unless you aren't
 set incsearch wrapscan                  " incremental, wrap-around
-set hlsearch                        " highlight last match (use :noh to clear)
 set gdefault                            " replace globally on lines
 
 " ------- Syntax -------------------------------------------------------------
@@ -145,24 +146,45 @@ hi StatusLineErr gui=none      guibg=#dc322f guifg=#002b36
 
 " ------- Rebindings ---------------------------------------------------------
 
-" make Y work from the cursor to the end of the line (which is more logical)
+" Y works from the cursor to the end of the line (which is more logical)
 nnoremap Y y$
 
-" faster scrolling (4 lines at a time)
+" ^e & ^y scroll faster (4 lines at a time)
 nnoremap <C-e> 3<C-e>
 vnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 vnoremap <C-y> 3<C-y>
 
-" ------- Leader -------------------------------------------------------------
+" use , as <LEADER>, and \ for reverse-repeat-f/F/t/F
+noremap \ ,
+noremap , \
+let mapleader=","
 
-let mapleader=";"
+" ------- Bindings -----------------------------------------------------------
 
+" <F2> to toggle paste-mode
+set pastetoggle=<F2>
+
+" <Ctrl-S> save file
+nnoremap <silent> <C-s> :w!<CR>
+inoremap <silent> <C-s> <ESC>:w!<CR>a
+
+" ,vr - reload .vimrc
+nmap <silent> <leader>vr :source $MYVIMRC<CR>
+
+" ,$ - strip trailing whitespace
 noremap <leader>$ :call StripTrailingWhitespace()<CR>
 
 " ------- Autocommands -------------------------------------------------------
 
 if has("autocmd")
+
+    " clear all vimrc-related autocmds [http://ruderich.org/simon/config/vimrc]
+    if has("autocmd")
+    augroup vimrc
+        autocmd!
+    augroup END
+    endif
 
     " treat .md files as Markdown, not Modula-2
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
