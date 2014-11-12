@@ -1,9 +1,0 @@
-[alias]
-    st = status
-[core]
-    editor = vim
-	eol = lf
-    autocrlf = false
-[user]
-    name = Nolan Woods
-    email = nolan@nolanwoods.net

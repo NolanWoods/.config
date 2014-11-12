@@ -1,0 +1,14 @@
+[user]
+    name = Nolan Woods
+    email = nolan@nolanwoods.net
+[core]
+    autocrlf = false
+    editor = vim
+    eol = lf
+    excludesfile = $DOTFILES/git/ignore
+[color]
+    ui = true
+[push]
+    default = simple
+[alias]
+    s = status

@@ -7,6 +7,16 @@ With much thanks given to: [Simon Crowley](http://inescapable.org/dotfiles),
 [Tim Pope](http://github.com/tpope/vim-sensible), and countless documentation
 maintainers and stackoverflow contributors.
 
+## Installation
+
+Clone this repository and fetch its submodules with:
+````
+git clone -- recursive git@github.com:NolanWoods/dotfiles.git config
+````
+
+Then you have to manually symlink the appropriate files and directories
+(for now!).
+
 ## Vim
 
 - Various [sensible](https://github.com/tpope/vim-sensible) defaults, and

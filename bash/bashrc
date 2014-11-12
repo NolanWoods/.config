@@ -1,0 +1,27 @@
+export DOTFILES=$HOME/config
+
+case $OSTYPE in
+    darwin*)
+        # calculate LSCOLORS with http://geoff.greer.fm/lscolors/
+        export LSCOLORS=exfxbEaEBxxEhEhBaDaCaD
+        export CLICOLOR=1
+
+        alias ls='ls -p'
+        ;;
+    linux*)
+        ;;
+esac
+
+export PS1="\e[0;33m\u@\h\e[m \e[0;36m\w\e[m \e[0;33m\$\e[m "
+
+# ---- Aliases ----
+
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+
+# ---- RVM ----
+
+export PATH="$PATH:$HOME/.rvm/bin"             # Add RVM to PATH for scripting
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
