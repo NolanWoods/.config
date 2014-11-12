@@ -12,7 +12,32 @@ case $OSTYPE in
         ;;
 esac
 
-export PS1="\e[0;33m\u@\h\e[m \e[0;36m\w\e[m \e[0;33m\$\e[m "
+# ---- Prompt ----
+
+BLACK="\[\033[30m\]"
+RED="\[\033[31m\]"
+GREEN="\[\033[32m\]"
+BROWN="\[\033[33m\]"
+BLUE="\[\033[34m\]"
+PURPLE="\[\033[35m\]"
+CYAN="\[\033[36m\]"
+GREY="\[\033[37m\]"
+
+UNDERSCORE="\[\033[4m\]"
+BLINK="\[\033[5m\]"
+INVERSE="\[\033[7m\]"
+RESET="\[\033[0m\]"
+
+source $DOTFILES/git/git-completion.bash
+source $DOTFILES/git/git-prompt.sh
+
+PROMPT_COMMAND='__git_ps1 "$BROWN\u@\h $CYAN\w$RESET" " $BROWN\\\$$RESET "'
+GIT_PS1_SHOWDIRTYSTATE='true'
+GIT_PS1_SHOWSTASHSTATE='true'
+GIT_PS1_SHOWUNTRACKEDFILES='true'
+GIT_PS1_SHOWCOLORHINTS='true'
+GIT_PS1_SHOWUPSTREAM='auto'
+
 
 # ---- Aliases ----
 
