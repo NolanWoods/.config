@@ -31,7 +31,7 @@ RESET="\[\033[0m\]"
 source $DOTFILES/git/git-completion.bash
 source $DOTFILES/git/git-prompt.sh
 
-PROMPT_COMMAND='__git_ps1 "$BROWN\u@\h $CYAN\w$RESET" " $BROWN\\\$$RESET "'
+PROMPT_COMMAND='__git_ps1 "$BROWN\u@\h$RESET" " $CYAN\w $BROWN\\\$$RESET "'
 GIT_PS1_SHOWDIRTYSTATE='true'
 GIT_PS1_SHOWSTASHSTATE='true'
 GIT_PS1_SHOWUNTRACKEDFILES='true'
@@ -44,6 +44,10 @@ GIT_PS1_SHOWUPSTREAM='auto'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
+
+alias g='git'
+alias gs='git s'
+__git_complete g __git_main         # extend git-completion to work with alias
 
 # ---- RVM ----
 
