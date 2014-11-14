@@ -10,6 +10,7 @@ maintainers and stackoverflow contributors.
 ## Installation
 
 Clone this repository and fetch its submodules with:
+
 ````
 git clone -- recursive git@github.com:NolanWoods/dotfiles.git config
 ````
@@ -17,12 +18,18 @@ git clone -- recursive git@github.com:NolanWoods/dotfiles.git config
 Then you have to manually symlink the appropriate files and directories
 (for now!).
 
+## Bash
+
+- flow-control disabled (so I can have `<C-s>` for Save in Vim)
+- git prompt and completion
+- various lazy aliases
+
 ## Vim
 
 - Various [sensible](https://github.com/tpope/vim-sensible) defaults, and
   [pathogen](https://github.com/tpope/vim-pathogen)
 - `<F2>` to toggle paste
-- `<Ctrl+S>` to save the current file (even in Insert mode)
+- `<C-s>` to save the current file (even in Insert mode)
 - `,vr` reload .vimrc
 - `,$` remove trailing whitespace (also, on save for various filetypes)
 

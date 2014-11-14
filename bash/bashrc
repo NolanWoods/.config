@@ -12,6 +12,9 @@ case $OSTYPE in
         ;;
 esac
 
+# disable flow control (I prefer C-s to be 'Save' in Vim)
+stty -ixon
+
 # ---- Prompt ----
 
 BLACK="\[\033[30m\]"

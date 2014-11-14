@@ -5,7 +5,7 @@
 set nocompatible
 
 " windows defaults ~/vimfiles instead of ~/.vim
-set runtimepath+=~/.vim     
+set runtimepath+=~/.vim
 
 " load pathogen (since it's not in .vim/autoload)
 runtime bundle/vim-pathogen/autoload/pathogen.vim
@@ -42,6 +42,7 @@ set cmdheight=2                         " more room for messages
 set shortmess=a                         " use abbreviated messages
 set winminheight=0                      " allow 0-line windows; so much better
 
+set list
 set listchars=tab:→\ ,trail:·,extends:»,precedes:«,nbsp:¬
 
 " ------- Behaviour ----------------------------------------------------------
@@ -109,7 +110,7 @@ endif
 " ------- Status Line --------------------------------------------------------
 
 if has("cmdline_info")
-    set ruler                           " show cursor position 
+    set ruler                           " show cursor position
     set showcmd                         " show partial commands in status line
 endif
 
@@ -166,8 +167,8 @@ let mapleader=","
 set pastetoggle=<F2>
 
 " <Ctrl-S> save file
-nnoremap <silent> <C-s> :w!<CR>
-inoremap <silent> <C-s> <ESC>:w!<CR>a
+nnoremap <C-s> :w!<CR>
+inoremap <C-s> <ESC>:w!<CR>a
 
 " ,vr - reload .vimrc
 nmap <silent> <leader>vr :source $MYVIMRC<CR>
