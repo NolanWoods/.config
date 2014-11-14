@@ -107,6 +107,11 @@ if has("syntax")
     syntax on
 endif
 
+" vim-colors-solarized
+let g:solarized_visibility = 'low'
+set background=dark
+colorscheme solarized
+
 " ------- Status Line --------------------------------------------------------
 
 if has("cmdline_info")
