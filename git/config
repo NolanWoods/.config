@@ -1,20 +1,24 @@
 [user]
-    name = Nolan Woods
-    email = nolan@nolanwoods.net
+	name = Nolan Woods
+	email = nolan@nolanwoods.net
 [core]
-    autocrlf = false
-    editor = vim
-    eol = lf
-    excludesfile = $DOTFILES/git/ignore
+	autocrlf = false
+	editor = vim
+	eol = lf
+	excludesfile = $DOTFILES/git/ignore
 [color]
-    ui = true
+	ui = true
 [push]
-    default = simple
+	default = simple
 [alias]
-    s = status -s
+	s = status -s
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[merge]
+	tool = kdiff3
+[diff]
+	guitool = kdiff3

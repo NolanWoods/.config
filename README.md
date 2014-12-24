@@ -1,4 +1,4 @@
-# ~/NolanWoods/dotfiles
+# ~/NolanWoods/.config
 
 Being a collection of various config files put here for my own convenience and
 reference. Use at your own risk.
@@ -15,6 +15,8 @@ Clone this repository and fetch its submodules with:
 ````
 git clone -- recursive git@github.com:NolanWoods/dotfiles.git config
 ````
+
+Or, if you've forgotten to clone recursively, clone the submodules with `git submodule init && git submodule update`
 
 Then you have to manually symlink the appropriate files and directories
 (for now!).
