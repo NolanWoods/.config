@@ -214,3 +214,5 @@ if has("autocmd")
                 \*.scss,*.sh,*.txt :call StripTrailingWhitespace()
 
 endif "has autocmd
+
+let g:sql_type_default = "sqlserver"
