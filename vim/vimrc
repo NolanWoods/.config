@@ -30,20 +30,7 @@ if has("persistent_undo")
 endif
 set viminfo+=n$HOME/.vim/.viminfo
 
-" ------- Appearance ---------------------------------------------------------
-
-set number
-if v:version >= 703
-    set relativenumber
-endif
-
-set showmode                            " show current mode
-set cmdheight=2                         " more room for messages
-set shortmess=a                         " use abbreviated messages
-set winminheight=0                      " allow 0-line windows; so much better
-
-set list
-set listchars=tab:→\ ,trail:·,extends:»,precedes:«,nbsp:¬
+let s:is_windows = has('win32') || has('win64')
 
 " ------- Behaviour ----------------------------------------------------------
 
@@ -72,6 +59,36 @@ if has("linebreak")
     set breakat=\ ^I!@*-+;:,./?         " default
 endif
 
+" ------- Appearance ---------------------------------------------------------
+
+set number
+if v:version >= 703
+    set relativenumber
+endif
+
+set showmode                            " show current mode
+set cmdheight=2                         " more room for messages
+set shortmess=a                         " use abbreviated messages
+set winminheight=0                      " allow 0-line windows; so much better
+
+set list
+set listchars=tab:→\ ,trail:·,extends:»,precedes:«,nbsp:¬
+
+if has("gui_running")
+    if has("gui_win32")
+        set guifont=Consolas:h10:cANSI
+        set lines=999 columns=999
+    endif
+else
+    set term=xterm
+    set t_ut= " setting for looking properly in tmux
+    set t_ti= t_te= " prevent vim from clobbering the scrollback buffer
+    let &t_Co = 256
+    if s:is_windows " trick to support 256 colours in conemu for Windows
+        let &t_AF="\e[38;5;%dm"
+        let &t_AB="\e[48;5;%dm"
+    endif
+endif
 
 " ------- Completion ---------------------------------------------------------
 
@@ -109,6 +126,7 @@ endif
 
 " vim-colors-solarized
 let g:solarized_visibility = 'low'
+let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
