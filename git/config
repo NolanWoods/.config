@@ -2,7 +2,7 @@
 	name = Nolan Woods
 	email = nolan@nolanwoods.net
 [core]
-	autocrlf = false
+	autocrlf = False
 	editor = vim
 	eol = lf
 	excludesfile = $DOTFILES/git/ignore
@@ -22,3 +22,7 @@
 	tool = kdiff3
 [diff]
 	guitool = kdiff3
+[mergetool "kdiff3"]
+	path = C:/Program Files/KDiff3/kdiff3.exe
+[difftool "kdiff3"]
+	path = C:/Program Files/KDiff3/kdiff3.exe
