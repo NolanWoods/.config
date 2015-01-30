@@ -1,4 +1,4 @@
-﻿; this must remain at top of file
+; this must remain at top of file
 SetTitleMatchMode 2
 
 
@@ -12,12 +12,16 @@ SetTitleMatchMode 2
 :*:dnw``::DEVFACTO\nolan.woods
 :*:nnw``::nolan@nolanwoods.net
 :*:lts``::launchTestServer
+:*:-.``::–
 :*:--``::—
 :*C:comp``::competency
 :*C:Comp``::Competency
 :*:init``::initialize
 :*:repo``::repository
 :*:gh``::github.com/
+:*:[]``::☐
+:*:[y]``::☑
+:*:[n]``::☒
 
 ; To Do:
 ; - greek alphabet, entered as gl` → λ
@@ -33,7 +37,7 @@ SetTitleMatchMode 2
 ;   http://symbolcodes.tlt.psu.edu/bylanguage/index.html
 
 
-#Include c:\users\nolan.woods\.config\autohotkey\CapsLockCtrlEscape.ahk
+; #Include c:\users\nolan.woods\.config\autohotkey\CapsLockCtrlEscape.ahk
 
 ;-------------------------------------------------------------------------------------------
 ; Allows for the script to be reloaded everytime it's saved
